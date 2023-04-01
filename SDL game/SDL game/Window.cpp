@@ -34,6 +34,14 @@ bool Window::init(int width, int height) {
 	return true;
 }
 
+void Window::drawImage(SDL_Surface* image) {
+	SDL_BlitSurface(image, NULL, screenSurface, NULL);
+}
+
+void Window::Update() {
+	SDL_UpdateWindowSurface(window);
+}
+
 void Window::Destroy() {
 	SDL_DestroyWindow(window);
 }

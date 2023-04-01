@@ -17,8 +17,11 @@ public:
 		success = init(width, height);
 	}
 
+	void Update();
+
 	void Destroy();
 	
+	void drawImage(SDL_Surface* image);
 
 	bool WasSuccessfull() { return success; };
 	SDL_Surface* GetSurfacePointer();

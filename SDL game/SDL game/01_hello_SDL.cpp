@@ -3,6 +3,7 @@
 #include <SDL.h>
 #include <stdio.h>
 #include "Window.h"
+#include "Image.h"
 
 //Screen dimension constants
 const int SCREEN_WIDTH = 640;
@@ -17,7 +18,11 @@ int main( int argc, char* args[] )
 		printf("Failed to initialize, something broke!");
 		return -1;
 	}
+	Image image{ "default.bmp" };
 
+	window.drawImage(image.GetSurfacePointer());
+
+	window.Update();
 
 
 	
@@ -29,6 +34,7 @@ int main( int argc, char* args[] )
 		while (SDL_PollEvent(&e))
 		{
 			if (e.type == SDL_QUIT) quit = true;
+			window.drawImage(image.GetSurfacePointer());
 		}
 	}
 
