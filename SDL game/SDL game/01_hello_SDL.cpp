@@ -4,10 +4,21 @@
 #include <stdio.h>
 #include "Window.h"
 #include "Image.h"
+#include "InputHandler.h"
 
 //Screen dimension constants
 const int SCREEN_WIDTH = 640;
 const int SCREEN_HEIGHT = 480;
+
+enum Keypress {
+	KEY_PRESS_DEFAULT,
+	KEY_PRESS_UP,
+	KEY_PRESS_DOWN,
+	KEY_PRESS_LEFT,
+	KEY_PRESS_RIGHT,
+	KEY_PRESS_TOTAL //I dont remember why this is needed, but I remember marc saying it has something to do with enumeration or something like that
+};
+
 
 int main( int argc, char* args[] )
 {
@@ -34,6 +45,11 @@ int main( int argc, char* args[] )
 		while (SDL_PollEvent(&e))
 		{
 			if (e.type == SDL_QUIT) quit = true;
+			else if (e.type == SDL_KEYDOWN)
+			{
+				InputHandler::ParseInput(e);
+				
+			}
 			window.drawImage(image.GetSurfacePointer());
 		}
 	}
