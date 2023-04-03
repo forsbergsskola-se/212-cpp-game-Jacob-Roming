@@ -31,7 +31,7 @@ int main( int argc, char* args[] )
 	}
 	Image image{ "default.bmp", window.GetSurfacePointer() };
 
-	window.drawImage(image.GetSurfacePointer());
+	//window.drawImage(image.GetSurfacePointer());
 
 	window.Update();
 
@@ -50,7 +50,7 @@ int main( int argc, char* args[] )
 				InputHandler::ParseInput(e);
 				
 			}
-			window.drawImage(image.GetSurfacePointer());
+			window.drawImage(image.GetSurfacePointer(), image.GetProportionPointer());
 		}
 	}
 

@@ -23,6 +23,8 @@ public:
 	
 	void drawImage(SDL_Surface* image);
 
+	void drawImage(SDL_Surface* image, SDL_Rect* proportion);
+
 	bool WasSuccessfull() { return success; };
 	SDL_Surface* GetSurfacePointer();
 

@@ -38,6 +38,10 @@ void Window::drawImage(SDL_Surface* image) {
 	SDL_BlitSurface(image, NULL, screenSurface, NULL);
 }
 
+void Window::drawImage(SDL_Surface* image, SDL_Rect* proportion) {
+	SDL_BlitSurface(image, NULL, screenSurface, proportion);
+}
+
 void Window::Update() {
 	SDL_UpdateWindowSurface(window);
 }
