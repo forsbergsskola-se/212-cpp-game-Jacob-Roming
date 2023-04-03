@@ -1,7 +1,7 @@
 #include "Image.h"
 #include <SDL.h>
 #include <string>
-Image::Image(std::string imageFileName) {
+Image::Image(std::string imageFileName, SDL_Surface* windowSurface) {
 	success = false; //Not needed? Since we initialise it to this in the header file. Feels good to do it again though...
 	std::string filePath = "resources/images/";
 	filePath += imageFileName;
@@ -11,6 +11,12 @@ Image::Image(std::string imageFileName) {
 		return;
 	}
 	success = true;
+
+	optimisedImage = SDL_ConvertSurface(image, windowSurface->format, 0);
+
+	if (optimisedImage == NULL) {
+		printf("Failed to create an optimised version of the image!\n");
+	}
 }
 
 Image::~Image() {
@@ -19,5 +25,5 @@ Image::~Image() {
 }
 
 SDL_Surface* Image::GetSurfacePointer() {
-	return image;
+	return optimisedImage;
 }

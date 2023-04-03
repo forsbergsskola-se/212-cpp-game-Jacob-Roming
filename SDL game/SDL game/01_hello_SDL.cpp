@@ -29,7 +29,7 @@ int main( int argc, char* args[] )
 		printf("Failed to initialize, something broke!");
 		return -1;
 	}
-	Image image{ "default.bmp" };
+	Image image{ "default.bmp", window.GetSurfacePointer() };
 
 	window.drawImage(image.GetSurfacePointer());
 
