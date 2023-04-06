@@ -1,13 +1,15 @@
 #pragma once
 #include <SDL.h>
 #include "Image.h"
+#include "IDrawable.h"
 #include <chrono>
 
-class Ball {
+class Ball : public IDrawable {
 public: 
 	Ball(float weight, int size, SDL_Surface* windowSurface);
-
-    void update();
+	void update();
+	SDL_Surface* getImageSurfacePointer();
+	SDL_Rect* GetProportionPointer();
 private:
 	double gravity = 4;
 	double friction = 0.005;

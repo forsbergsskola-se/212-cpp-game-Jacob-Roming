@@ -5,6 +5,7 @@
 #include "Window.h"
 #include "Image.h"
 #include "InputHandler.h"
+#include "Ball.h"
 
 //Screen dimension constants
 const int SCREEN_WIDTH = 640;
@@ -30,12 +31,14 @@ int main( int argc, char* args[] )
 		return -1;
 	}
 	Image image{ "default.bmp", window.GetSurfacePointer() };
+	Ball ball(5,10,window.GetSurfacePointer());
+
 
 	//window.drawImage(image.GetSurfacePointer());
 
 	window.Update();
 
-
+	
 	
 
 	//Hack to get window to stay up
@@ -51,6 +54,8 @@ int main( int argc, char* args[] )
 				
 			}
 			window.drawImage(image.GetSurfacePointer(), image.GetProportionPointer());
+			ball.update();
+			window.drawImage(ball.getImageSurfacePointer(), ball.GetProportionPointer());
 		}
 	}
 

@@ -4,6 +4,6 @@
 class InputHandler
 {
 public:
-	static void ParseInput(SDL_Event event); /**/
+	static void ParseInput(SDL_Event event);
 };
 

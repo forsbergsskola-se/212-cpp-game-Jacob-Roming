@@ -27,3 +27,11 @@ void Ball::update() {
 	
 	//TODO: implement drag
 }
+
+SDL_Surface* Ball::getImageSurfacePointer() {
+	return sprite->GetSurfacePointer();
+}
+
+SDL_Rect* Ball::GetProportionPointer() {
+	return sprite->GetProportionPointer();
+}
