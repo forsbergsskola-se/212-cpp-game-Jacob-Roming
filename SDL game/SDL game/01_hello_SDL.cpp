@@ -8,8 +8,8 @@
 #include "Ball.h"
 
 //Screen dimension constants
-const int SCREEN_WIDTH = 640;
-const int SCREEN_HEIGHT = 480;
+const int SCREEN_WIDTH = 1024;
+const int SCREEN_HEIGHT = 768;
 
 enum Keypress {
 	KEY_PRESS_DEFAULT,
@@ -31,7 +31,9 @@ int main( int argc, char* args[] )
 		return -1;
 	}
 	Image image{ "default.bmp", window.GetSurfacePointer() };
-	Ball ball(5,10,window.GetSurfacePointer());
+	Image background("black.bmp", window.GetSurfacePointer());
+
+	Ball ball(5,30,window.GetSurfacePointer());
 
 
 	//window.drawImage(image.GetSurfacePointer());
@@ -53,10 +55,14 @@ int main( int argc, char* args[] )
 				InputHandler::ParseInput(e);
 				
 			}
-			window.drawImage(image.GetSurfacePointer(), image.GetProportionPointer());
-			ball.update();
-			window.drawImage(ball.getImageSurfacePointer(), ball.GetProportionPointer());
+			
 		}
+		//window.drawImage(image.GetSurfacePointer(), image.GetProportionPointer());
+		window.drawImage(background.GetSurfacePointer());
+		//window.ClearScreen();
+		ball.update();
+		window.drawImage(ball.getImageSurfacePointer(), ball.GetProportionPointer());
+		window.Update();
 	}
 
 	//Destroy window

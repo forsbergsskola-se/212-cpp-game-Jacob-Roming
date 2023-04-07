@@ -11,8 +11,8 @@ public:
 	SDL_Surface* getImageSurfacePointer();
 	SDL_Rect* GetProportionPointer();
 private:
-	double gravity = 4;
-	double friction = 0.005;
+	double gravity = 0.005;
+	double friction = 0.02;
 	std::chrono::steady_clock::time_point lastTickTime;
 	double xSpeed;
 	double ySpeed;

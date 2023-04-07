@@ -39,7 +39,7 @@ void Window::drawImage(SDL_Surface* image) {
 }
 
 void Window::drawImage(SDL_Surface* image, SDL_Rect* proportion) {
-	SDL_BlitSurface(image, NULL, screenSurface, proportion);
+	SDL_BlitScaled(image, NULL, screenSurface, proportion);
 }
 
 void Window::Update() {
@@ -56,4 +56,8 @@ SDL_Surface* Window::GetSurfacePointer() {
 
 SDL_Window* Window::GetWindowPointer() {
 	return window;
+}
+
+void Window::ClearScreen() {
+	drawImage(screenSurface);
 }

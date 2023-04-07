@@ -2,10 +2,6 @@
 #include <SDL.h>
 #include <string>
 Image::Image(std::string imageFileName, SDL_Surface* windowSurface) {
-	proportion.x = 50;
-	proportion.y = 50;
-	proportion.w = 50;
-	proportion.h = 50;
 
 	SDL_Surface* optimisedImage = NULL;
 	success = false; //Not needed? Since we initialise it to this in the header file. Feels good to do it again though...
@@ -28,7 +24,7 @@ Image::Image(std::string imageFileName, SDL_Surface* windowSurface) {
 	SDL_FreeSurface(image);
 	image = optimisedImage;
 	
-	SDL_BlitScaled(image, NULL, windowSurface, &proportion);
+	//SDL_BlitScaled(image, NULL, windowSurface, &proportion);
 }
 
 SDL_Rect* Image::GetProportionPointer() {

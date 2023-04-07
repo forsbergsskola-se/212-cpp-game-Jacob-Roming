@@ -25,6 +25,8 @@ public:
 
 	void drawImage(SDL_Surface* image, SDL_Rect* proportion);
 
+	void ClearScreen();
+
 	bool WasSuccessfull() { return success; };
 	SDL_Surface* GetSurfacePointer();
 
