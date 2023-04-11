@@ -167,6 +167,7 @@
   <ItemGroup>
     <ClCompile Include="01_hello_SDL.cpp" />
     <ClCompile Include="Ball.cpp" />
+    <ClCompile Include="CollisionDetection.cpp" />
     <ClCompile Include="IDrawable.cpp" />
     <ClCompile Include="Image.cpp" />
     <ClCompile Include="InputHandler.cpp" />
@@ -174,6 +175,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Ball.h" />
+    <ClInclude Include="CollisionDetection.h" />
     <ClInclude Include="IDrawable.h" />
     <ClInclude Include="Image.h" />
     <ClInclude Include="InputHandler.h" />
