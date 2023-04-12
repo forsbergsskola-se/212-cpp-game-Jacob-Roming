@@ -6,9 +6,7 @@ void Spike::Update() {
 
 	auto thisTickTime = std::chrono::steady_clock::now();
 	double deltaTime = (double)std::chrono::duration_cast<std::chrono::nanoseconds>(thisTickTime - lastTickTime).count() / (double)1000000000;
-	std::cout <<"xPosition: " << xPosition << " Movement Speed: "<< movementSpeed << " Delta time: "<< deltaTime << std::endl;
 	xPosition = xPosition - (movementSpeed * deltaTime);
-	std::cout << xPosition << std::endl;
 	SDL_Rect* proportion = sprite->GetProportionPointer();
 	proportion->x = xPosition;
 

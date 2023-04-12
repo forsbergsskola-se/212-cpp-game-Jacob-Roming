@@ -19,6 +19,10 @@ void InputHandler::ParseInput(SDL_Event event) {
 			printf("We pressed right\n");
 			break;
 
+		case SDLK_SPACE:
+			printf("Jump!\n");
+			break;
+
 		default:
 			break;
 		}

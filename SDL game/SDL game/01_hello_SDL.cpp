@@ -2,6 +2,7 @@
 //Using SDL and standard IO
 #include <SDL.h>
 #include <stdio.h>
+#include <iostream>
 #include "Window.h"
 #include "Image.h"
 #include "InputHandler.h"
@@ -80,8 +81,14 @@ int main( int argc, char* args[] )
 		window.drawImage(ball.getImageSurfacePointer(), ball.GetProportionPointer());
 		std::vector<std::shared_ptr<Spike>> spikes = spikeFactory.getSpikes();
 		spikeFactory.Update();
+
+		//Draw spikes and check their colision
 		for (int i = 0; i < spikes.size(); i++) {
 			window.drawImage(spikes[i]->getImage()->GetSurfacePointer(), spikes[i]->getImage()->GetProportionPointer());
+
+			if (CollisionDetection::CheckTwoRects(spikes[i]->getImage()->GetProportionPointer(), ball.GetProportionPointer())) {
+				std::cout << "you died!" << std::endl;
+			}
 		}
 
 
