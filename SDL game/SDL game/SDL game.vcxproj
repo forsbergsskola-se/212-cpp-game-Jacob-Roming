@@ -173,6 +173,7 @@
     <ClCompile Include="InputHandler.cpp" />
     <ClCompile Include="IUpdatable.cpp" />
     <ClCompile Include="Spike.cpp" />
+    <ClCompile Include="SpikeFactory.cpp" />
     <ClCompile Include="Window.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -183,6 +184,7 @@
     <ClInclude Include="InputHandler.h" />
     <ClInclude Include="IUpdatable.h" />
     <ClInclude Include="Spike.h" />
+    <ClInclude Include="SpikeFactory.h" />
     <ClInclude Include="Window.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

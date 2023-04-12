@@ -15,4 +15,5 @@ public:
 
 	Spike(SDL_Surface* windowSurface);
 
+
 };

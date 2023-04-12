@@ -7,6 +7,8 @@
 #include "InputHandler.h"
 #include "Ball.h"
 #include "CollisionDetection.h"
+#include "SpikeFactory.h"
+#include "Spike.h"
 
 //Screen dimension constants
 const int SCREEN_WIDTH = 1024;
@@ -35,12 +37,16 @@ int main( int argc, char* args[] )
 	Image background("black.bmp", window.GetSurfacePointer());
 	Image lowerBorder("pink.bmp", window.GetSurfacePointer());
 	SDL_Rect* rect = lowerBorder.GetProportionPointer();
+
+	SpikeFactory spikeFactory(window.GetSurfacePointer());
 	rect->h = 10;
 	rect->w = 9000;
 	rect->y = 700;
 	rect->x = 0;
 
 	Ball ball(5,30,window.GetSurfacePointer());
+
+	
 
 
 	//window.drawImage(image.GetSurfacePointer());
@@ -52,6 +58,8 @@ int main( int argc, char* args[] )
 
 	//Hack to get window to stay up
 	SDL_Event e; bool quit = false;
+
+	//Game loop pattern
 	while (quit == false)
 	{
 		while (SDL_PollEvent(&e))
