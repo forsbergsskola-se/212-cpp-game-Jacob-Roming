@@ -17,3 +17,7 @@ void SpikeFactory::Update() {
 
 	lastTickTime = thisTickTime;
 }
+
+std::vector<std::shared_ptr<Spike>> SpikeFactory::getSpikes() {
+	return spikes;
+}

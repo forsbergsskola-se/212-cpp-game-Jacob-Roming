@@ -9,6 +9,7 @@ private:
 	SDL_Surface* window;
 	std::chrono::steady_clock::time_point lastTickTime;
 public:
+	std::vector<std::shared_ptr<Spike>> getSpikes();
 	void Update();
 	SpikeFactory(SDL_Surface* windowSurface);
 };

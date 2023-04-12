@@ -78,6 +78,11 @@ int main( int argc, char* args[] )
 		window.drawImage(lowerBorder.GetSurfacePointer(), lowerBorder.GetProportionPointer());
 		ball.Update();
 		window.drawImage(ball.getImageSurfacePointer(), ball.GetProportionPointer());
+		std::vector<std::shared_ptr<Spike>> spikes = spikeFactory.getSpikes();
+		spikeFactory.Update();
+		for (int i = 0; i < spikes.size(); i++) {
+			window.drawImage(spikes[i]->getImage()->GetSurfacePointer(), spikes[i]->getImage()->GetProportionPointer());
+		}
 
 
 		if (CollisionDetection::CheckTwoRects(ball.GetProportionPointer(), lowerBorder.GetProportionPointer())) {
