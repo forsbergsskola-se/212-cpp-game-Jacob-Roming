@@ -5,6 +5,7 @@
 #include <stdio.h>
 #include <iostream>
 #include "CollisionDetection.h"
+#include "IUpdatable.h"
 
 Ball::Ball(float aWeight, int aSize, SDL_Surface* windowSurface){
 	weight = aWeight;
@@ -22,7 +23,7 @@ Ball::Ball(float aWeight, int aSize, SDL_Surface* windowSurface){
 	lastTickTime = std::chrono::steady_clock::now();
 };
 
-void Ball::update() {
+void Ball::Update() {
 	auto thisTickTime = std::chrono::steady_clock::now();
 	double deltaTime = (double)std::chrono::duration_cast<std::chrono::nanoseconds>(thisTickTime - lastTickTime).count() / (double)1000000000;
 	xPosition -= (xSpeed * deltaTime);
@@ -35,8 +36,6 @@ void Ball::update() {
 	xSpeed -= (friction * xSpeed);
 
 	lastTickTime = thisTickTime;
-
-	
 }
 
 void Ball::CollidedWithSurface(SDL_Rect* other) {

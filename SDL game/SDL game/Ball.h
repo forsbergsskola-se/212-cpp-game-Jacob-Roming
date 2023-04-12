@@ -2,12 +2,13 @@
 #include <SDL.h>
 #include "Image.h"
 #include "IDrawable.h"
+#include "IUpdatable.h"
 #include <chrono>
 
-class Ball : public IDrawable {
+class Ball : public IDrawable, public IUpdatable {
 public: 
 	Ball(float weight, int size, SDL_Surface* windowSurface);
-	void update();
+	void Update();
 	void CollidedWithSurface(SDL_Rect* other);
 	SDL_Surface* getImageSurfacePointer();
 	SDL_Rect* GetProportionPointer();

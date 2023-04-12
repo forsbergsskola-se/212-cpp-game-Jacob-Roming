@@ -68,7 +68,7 @@ int main( int argc, char* args[] )
 		window.drawImage(background.GetSurfacePointer());
 		//window.ClearScreen();
 		window.drawImage(lowerBorder.GetSurfacePointer(), lowerBorder.GetProportionPointer());
-		ball.update();
+		ball.Update();
 		window.drawImage(ball.getImageSurfacePointer(), ball.GetProportionPointer());
 
 

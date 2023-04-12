@@ -171,6 +171,8 @@
     <ClCompile Include="IDrawable.cpp" />
     <ClCompile Include="Image.cpp" />
     <ClCompile Include="InputHandler.cpp" />
+    <ClCompile Include="IUpdatable.cpp" />
+    <ClCompile Include="Spike.cpp" />
     <ClCompile Include="Window.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -179,6 +181,8 @@
     <ClInclude Include="IDrawable.h" />
     <ClInclude Include="Image.h" />
     <ClInclude Include="InputHandler.h" />
+    <ClInclude Include="IUpdatable.h" />
+    <ClInclude Include="Spike.h" />
     <ClInclude Include="Window.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
