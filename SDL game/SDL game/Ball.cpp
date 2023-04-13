@@ -33,10 +33,18 @@ void Ball::Update() {
 	ySpeed -= (gravity * deltaTime);
 
 	ySpeed -= (friction * ySpeed);
-	xSpeed -= (friction * xSpeed);
 
 	lastTickTime = thisTickTime;
 }
+
+void Ball::Jump() {
+	if ((int)yPosition == 671) {
+		yPosition -= 1;
+		ySpeed = 600;
+	}
+}
+
+
 
 void Ball::CollidedWithSurface(SDL_Rect* other) {
 	if (other->y > yPosition) {

@@ -7,12 +7,12 @@ class Spike : public IUpdatable
 {
 private:
 	Image* sprite;
-	double movementSpeed = 20;
+	double movementSpeed = 150;
 	std::chrono::steady_clock::time_point lastTickTime;
 	double xPosition;
 public:
 	void Update();
-
+	bool DeleteMe();
 	Image* getImage();
 	Spike(SDL_Surface* windowSurface);
 

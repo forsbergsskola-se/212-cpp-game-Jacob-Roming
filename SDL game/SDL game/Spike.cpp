@@ -20,10 +20,10 @@ Spike::Spike(SDL_Surface* windowSurface){
 	SDL_Rect* proportion = sprite->GetProportionPointer();
 
 	proportion->y = 670; //I like magic numbers, theyre comfy and easy to write
-	proportion->x = 150;
+	proportion->x = 1000;
 	proportion->h = 30;
 	proportion->w = 20;
-	xPosition = 150;
+	xPosition = 1000;
 
 	lastTickTime = std::chrono::steady_clock::now();
 
@@ -33,4 +33,8 @@ Spike::Spike(SDL_Surface* windowSurface){
 
 Image* Spike::getImage(){
 	return sprite;
+}
+
+bool Spike::DeleteMe() {
+	return (xPosition < -10);
 }

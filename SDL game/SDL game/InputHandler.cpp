@@ -1,5 +1,6 @@
 #include "InputHandler.h"
-void InputHandler::ParseInput(SDL_Event event) {
+#include "Ball.h"
+void InputHandler::ParseInput(SDL_Event event, Ball* ball) { //I hate including the ball as an argument like this but Im not smart enough to come up with a better solution :(
 	
 		switch (event.key.keysym.sym)
 		{
@@ -21,6 +22,7 @@ void InputHandler::ParseInput(SDL_Event event) {
 
 		case SDLK_SPACE:
 			printf("Jump!\n");
+			ball->Jump();
 			break;
 
 		default:
