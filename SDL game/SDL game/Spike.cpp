@@ -40,6 +40,5 @@ bool Spike::DeleteMe() {
 }
 
 Spike::~Spike(){
-	std::cout << "Ow my shoulder" << std::endl;
 	delete sprite;
 }
