@@ -1,6 +1,7 @@
 #pragma once
 #include "IUpdatable.h"
 #include <chrono>
+#include <SDL_ttf.h>
 class HUD : public IUpdatable
 {
 private:

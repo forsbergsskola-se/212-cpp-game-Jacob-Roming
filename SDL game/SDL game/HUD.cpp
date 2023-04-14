@@ -1,6 +1,6 @@
 #include "HUD.h"
 #include <chrono>
-
+#include <SDL_ttf.h>
 
 HUD::HUD() {
 	lastTickTime = std::chrono::steady_clock::now();

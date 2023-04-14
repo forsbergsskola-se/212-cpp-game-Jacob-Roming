@@ -15,6 +15,7 @@ public:
 	bool DeleteMe();
 	Image* getImage();
 	Spike(SDL_Surface* windowSurface);
+	~Spike();
 
 
 };

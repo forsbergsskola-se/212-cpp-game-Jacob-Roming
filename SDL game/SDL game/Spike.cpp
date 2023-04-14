@@ -38,3 +38,8 @@ Image* Spike::getImage(){
 bool Spike::DeleteMe() {
 	return (xPosition < -10);
 }
+
+Spike::~Spike(){
+	std::cout << "Ow my shoulder" << std::endl;
+	delete sprite;
+}
