@@ -1,6 +1,7 @@
 #include "HUD.h"
 #include <chrono>
 #include <SDL_ttf.h>
+#include <iostream>
 
 HUD::HUD() {
 	lastTickTime = std::chrono::steady_clock::now();
@@ -12,6 +13,7 @@ void HUD::Update() {
 	
 	
 	points += (pointsScoreRate * deltaTime);
+	std::cout << "Current score: " << points << std::endl;
 	
 		
 	lastTickTime = thisTickTime;
@@ -19,7 +21,12 @@ void HUD::Update() {
 }
 
 void HUD::KillPlayer() {
-	highScore = points;
+	std::cout << "You died! Your score: " << points << std::endl;
+	
+	if (points > highScore) {
+		highScore = points;
+	}
+	std::cout << "Current highscore: " << highScore << std::endl;
 	points = 0;
 
 }

@@ -3,6 +3,7 @@
 #include <SDL.h>
 #include <stdio.h>
 #include <iostream>
+#include <chrono>
 #include "Window.h"
 #include "Image.h"
 #include "InputHandler.h"
@@ -10,6 +11,7 @@
 #include "CollisionDetection.h"
 #include "SpikeFactory.h"
 #include "Spike.h"
+#include "HUD.h"
 
 //Screen dimension constants
 const int SCREEN_WIDTH = 1024;
@@ -38,12 +40,14 @@ int main( int argc, char* args[] )
 	Image background("black.bmp", window.GetSurfacePointer());
 	Image lowerBorder("pink.bmp", window.GetSurfacePointer());
 	SDL_Rect* rect = lowerBorder.GetProportionPointer();
-
+	HUD* hud = new HUD();
 	SpikeFactory spikeFactory(window.GetSurfacePointer());
 	rect->h = 10;
 	rect->w = 9000;
 	rect->y = 700;
 	rect->x = 0;
+
+	bool playerIsAlive = true;
 
 	Ball ball(5,30,window.GetSurfacePointer());
 
@@ -63,41 +67,59 @@ int main( int argc, char* args[] )
 	//Game loop pattern
 	while (quit == false)
 	{
-		while (SDL_PollEvent(&e))
-		{
-			if (e.type == SDL_QUIT) quit = true;
-			else if (e.type == SDL_KEYDOWN)
+		if (playerIsAlive) {
+			while (SDL_PollEvent(&e))
 			{
-				InputHandler::ParseInput(e, &ball);
-				
+				//Event queue pattern
+				if (e.type == SDL_QUIT) quit = true;
+				else if (e.type == SDL_KEYDOWN)
+				{
+					InputHandler::ParseInput(e, &ball);
+
+				}
+
 			}
-			
-		}
-		//window.drawImage(image.GetSurfacePointer(), image.GetProportionPointer());
-		window.drawImage(background.GetSurfacePointer());
-		//window.ClearScreen();
-		window.drawImage(lowerBorder.GetSurfacePointer(), lowerBorder.GetProportionPointer());
-		ball.Update();
-		window.drawImage(ball.getImageSurfacePointer(), ball.GetProportionPointer());
-		std::vector<std::shared_ptr<Spike>> spikes = spikeFactory.getSpikes();
-		spikeFactory.Update();
+			window.drawImage(background.GetSurfacePointer());//This "clears" the screen of the previous frames content
+			window.drawImage(lowerBorder.GetSurfacePointer(), lowerBorder.GetProportionPointer()); //The platform at the bottom of the screen
 
-		//Draw spikes and check their colision
-		for (int i = 0; i < spikes.size(); i++) {
-			window.drawImage(spikes[i]->getImage()->GetSurfacePointer(), spikes[i]->getImage()->GetProportionPointer());
+			ball.Update(); //Tell the ball to update its logic
+			window.drawImage(ball.getImageSurfacePointer(), ball.GetProportionPointer()); //And then draw it
 
-			if (CollisionDetection::CheckTwoRects(spikes[i]->getImage()->GetProportionPointer(), ball.GetProportionPointer())) {
-				std::cout << "you died!" << std::endl;
+			spikeFactory.Update(); //Tell the spike factory to update all the spikes positions
+
+
+			std::vector<std::shared_ptr<Spike>> spikes = spikeFactory.getSpikes();  //Get pointers to the spike so we can draw them and colision check them against the player
+			//Draw spikes and check their colision
+			for (int i = 0; i < spikes.size(); i++) {
+				window.drawImage(spikes[i]->getImage()->GetSurfacePointer(), spikes[i]->getImage()->GetProportionPointer());
+
+				if (CollisionDetection::CheckTwoRects(spikes[i]->getImage()->GetProportionPointer(), ball.GetProportionPointer())) {
+					hud->KillPlayer();
+					playerIsAlive = false;
+				}
 			}
+
+
+			if (CollisionDetection::CheckTwoRects(ball.GetProportionPointer(), lowerBorder.GetProportionPointer())) {
+				ball.CollidedWithSurface(lowerBorder.GetProportionPointer());
+			}
+
+
+			window.Update();
 		}
+		else {
+			auto startTime = std::chrono::steady_clock::now();
+			double TimeDifference = 0;
+			do {
+				auto currentTime = std::chrono::steady_clock::now();
+				TimeDifference = (double)std::chrono::duration_cast<std::chrono::seconds>(currentTime - startTime).count();
+			} while (TimeDifference < 5);
 
+			playerIsAlive = true;
+			spikeFactory = SpikeFactory(window.GetSurfacePointer());
+			ball = Ball(5, 30, window.GetSurfacePointer());
 
-		if (CollisionDetection::CheckTwoRects(ball.GetProportionPointer(), lowerBorder.GetProportionPointer())) {
-			ball.CollidedWithSurface(lowerBorder.GetProportionPointer());
 		}
-		
-
-		window.Update();
 	}
 
 	//Destroy window

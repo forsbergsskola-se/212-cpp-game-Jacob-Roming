@@ -38,7 +38,7 @@ void Ball::Update() {
 }
 
 void Ball::Jump() {
-	if ((int)yPosition == 671) {
+	if ((int)yPosition == 671) { //We could do some complicated collision check to see if we are on the ground, instead we get this magic number
 		yPosition -= 1;
 		ySpeed = 600;
 	}
