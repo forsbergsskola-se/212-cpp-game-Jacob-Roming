@@ -23,6 +23,10 @@ Ball::Ball(float aWeight, int aSize, SDL_Surface* windowSurface){
 	lastTickTime = std::chrono::steady_clock::now();
 };
 
+Ball::~Ball() {
+	//delete sprite; This causes a crash! So instead we have a memory leak. 
+}
+
 void Ball::Update() {
 	auto thisTickTime = std::chrono::steady_clock::now();
 	double deltaTime = (double)std::chrono::duration_cast<std::chrono::nanoseconds>(thisTickTime - lastTickTime).count() / (double)1000000000;

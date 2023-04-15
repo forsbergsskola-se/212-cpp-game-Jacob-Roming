@@ -8,6 +8,7 @@
 class Ball : public IDrawable, public IUpdatable {
 public: 
 	Ball(float weight, int size, SDL_Surface* windowSurface);
+	~Ball();
 	void Jump();
 	void Update();
 	void CollidedWithSurface(SDL_Rect* other);

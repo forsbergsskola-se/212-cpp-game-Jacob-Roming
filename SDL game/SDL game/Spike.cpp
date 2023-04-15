@@ -16,7 +16,7 @@ void Spike::Update() {
 }
 
 Spike::Spike(SDL_Surface* windowSurface){
-	sprite = new Image("pink.bmp", windowSurface);
+	sprite = new Image("red.bmp", windowSurface);
 	SDL_Rect* proportion = sprite->GetProportionPointer();
 
 	proportion->y = 670; //I like magic numbers, theyre comfy and easy to write

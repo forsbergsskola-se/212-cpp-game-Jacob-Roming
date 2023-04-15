@@ -38,8 +38,9 @@ int main( int argc, char* args[] )
 	}
 	Image image{ "default.bmp", window.GetSurfacePointer() };
 	Image background("black.bmp", window.GetSurfacePointer());
-	Image lowerBorder("pink.bmp", window.GetSurfacePointer());
+	Image lowerBorder("blue.bmp", window.GetSurfacePointer());
 	SDL_Rect* rect = lowerBorder.GetProportionPointer();
+
 	HUD* hud = new HUD();
 	SpikeFactory spikeFactory(window.GetSurfacePointer());
 	rect->h = 10;
@@ -74,8 +75,8 @@ int main( int argc, char* args[] )
 				if (e.type == SDL_QUIT) quit = true;
 				else if (e.type == SDL_KEYDOWN)
 				{
-					InputHandler::ParseInput(e, &ball);
-
+					InputHandler::ParseInput(e, &ball);//sending a pointer to the ball like this is bad
+					//If we were smarter we would do this some other way, too bad!
 				}
 
 			}
@@ -113,7 +114,7 @@ int main( int argc, char* args[] )
 			do {
 				auto currentTime = std::chrono::steady_clock::now();
 				TimeDifference = (double)std::chrono::duration_cast<std::chrono::seconds>(currentTime - startTime).count();
-			} while (TimeDifference < 5);
+			} while (TimeDifference < 1);
 
 			playerIsAlive = true;
 			spikeFactory = SpikeFactory(window.GetSurfacePointer());
