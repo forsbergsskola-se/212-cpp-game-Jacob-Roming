@@ -11,7 +11,7 @@ class HUD : public IUpdatable
 private:
 	double points = 0;
 	int highScore = 0;
-	double pointsScoreRate  = 5000;
+	double pointsScoreRate  = 10;
 	std::chrono::steady_clock::time_point lastTickTime;
 
 public:

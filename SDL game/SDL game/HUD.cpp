@@ -3,6 +3,9 @@
 #include <SDL_ttf.h>
 #include <iostream>
 
+
+//I wanted this to display the score in text on the screen, but it was much more complicated than I thought so it just outputs to the terminal :(
+
 HUD::HUD() {
 	lastTickTime = std::chrono::steady_clock::now();
 }
@@ -13,7 +16,6 @@ void HUD::Update() {
 	
 	
 	points += (pointsScoreRate * deltaTime);
-	std::cout << "Current score: " << points << std::endl;
 	
 		
 	lastTickTime = thisTickTime;
@@ -21,7 +23,7 @@ void HUD::Update() {
 }
 
 void HUD::KillPlayer() {
-	std::cout << "You died! Your score: " << points << std::endl;
+	std::cout << "You died! Your score: " << (int)points << std::endl;
 	
 	if (points > highScore) {
 		highScore = points;

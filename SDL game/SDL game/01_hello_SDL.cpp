@@ -87,7 +87,7 @@ int main( int argc, char* args[] )
 			window.drawImage(ball.getImageSurfacePointer(), ball.GetProportionPointer()); //And then draw it
 
 			spikeFactory.Update(); //Tell the spike factory to update all the spikes positions
-
+			hud->Update();
 
 			std::vector<std::shared_ptr<Spike>> spikes = spikeFactory.getSpikes();  //Get pointers to the spike so we can draw them and colision check them against the player
 			//Draw spikes and check their colision

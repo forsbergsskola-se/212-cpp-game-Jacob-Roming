@@ -30,7 +30,6 @@ void SpikeFactory::Update() {
 	for (int i = 0; i < spikes.size(); i++) {
 		if (spikes[i]->DeleteMe()) {
 			spikes.erase(spikes.begin() + i);
-			std::cout << "We deleted a spike" << std::endl;
 		}
 
 	}
