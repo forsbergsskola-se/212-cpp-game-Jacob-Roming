@@ -1,1 +1,3 @@
-[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-8d59dc4de5201274e310e4c54b9627a8934c3b88527886e3b421487c677d23eb.svg)](https://classroom.github.com/a/xhZBU6iz)
+### A simple "impossible game" clone made in C++ using the SDL2 library.
+
+Press space to jump, try to not hit any of the obstacles.![Impossible game clone](https://user-images.githubusercontent.com/112474358/232331604-ec1cab35-8a66-4267-adcb-866e22550d64.png)
