@@ -65,21 +65,26 @@ int main( int argc, char* args[] )
 	//Hack to get window to stay up
 	SDL_Event e; bool quit = false;
 
+
+	auto startTime = std::chrono::steady_clock::now();
+	double TimeDifference = 0;
+
 	//Game loop pattern
 	while (quit == false)
 	{
-		if (playerIsAlive) {
-			while (SDL_PollEvent(&e))
+		
+		while (SDL_PollEvent(&e))
+		{
+			//Event queue pattern
+			if (e.type == SDL_QUIT) quit = true;
+			else if (e.type == SDL_KEYDOWN)
 			{
-				//Event queue pattern
-				if (e.type == SDL_QUIT) quit = true;
-				else if (e.type == SDL_KEYDOWN)
-				{
-					InputHandler::ParseInput(e, &ball);//sending a pointer to the ball like this is bad
-					//If we were smarter we would do this some other way, too bad!
-				}
-
+				InputHandler::ParseInput(e, &ball);//sending a pointer to the ball like this is bad
+				//If we were smarter we would do this some other way, too bad!
 			}
+
+		}
+		if (playerIsAlive) {
 			window.drawImage(background.GetSurfacePointer());//This "clears" the screen of the previous frames content
 			window.drawImage(lowerBorder.GetSurfacePointer(), lowerBorder.GetProportionPointer()); //The platform at the bottom of the screen
 
@@ -97,6 +102,8 @@ int main( int argc, char* args[] )
 				if (CollisionDetection::CheckTwoRects(spikes[i]->getImage()->GetProportionPointer(), ball.GetProportionPointer())) {
 					hud->KillPlayer();
 					playerIsAlive = false;
+					TimeDifference = 0;
+					startTime = std::chrono::steady_clock::now();
 				}
 			}
 
@@ -109,8 +116,7 @@ int main( int argc, char* args[] )
 			window.Update();
 		}
 		else {
-			auto startTime = std::chrono::steady_clock::now();
-			double TimeDifference = 0;
+			
 			do {
 				auto currentTime = std::chrono::steady_clock::now();
 				TimeDifference = (double)std::chrono::duration_cast<std::chrono::seconds>(currentTime - startTime).count();
