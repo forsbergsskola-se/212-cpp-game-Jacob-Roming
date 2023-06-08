@@ -15,8 +15,12 @@ Using this pattern is required since there can be multiple events per frame, so 
 
 ## Advanced C++ Features used
 
-### XXX
-Used in [...] because [...]
+### Shared pointer
+Used in SpikeFactory.cpp on row 7 because it automates memory management
 
-### XXX
-Used in [...] because [...]
+
+### mt19937 random number generation
+Used in SpikeFactory.cpp on row 22 because its a good random number generation algorithm.
+
+### Chrono
+Used in Spike.cpp on row 8 to provide a DeltaTime value, so the game always runs at the same speed no matter what fps it runs at.
